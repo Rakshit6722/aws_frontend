@@ -1,0 +1,15 @@
+version: 0.8
+
+phases:
+  install:
+    commands:
+      - echo installing dependencies
+      - npm install
+  build:
+    commands:
+      - echo building frontend app
+      - npm run build
+artifacts:
+  files:
+    - '**/*'
+  base-directory: build

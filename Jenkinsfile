@@ -1,7 +1,5 @@
 pipeline{
-    agent {
-        dockerContainer {image 'node:18.17.1'}
-    }
+    agent any
 
     stages {
         stage('Install Dependencies'){
@@ -10,9 +8,6 @@ pipeline{
                 sh "npm install"
             }
         }
-
-
-
         stage('Run Tests'){
             steps{
                 echo "Testing..."

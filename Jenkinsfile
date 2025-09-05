@@ -1,23 +1,33 @@
 pipeline{
-    agent any
+    agent {
+        docker {image 'node:18.17.1'}
+    }
 
-    stages{
-        stage('Build'){
+    stages {
+        stage('Install Dependencies'){
             steps{
-                echo "Building..."
+                echo "Installing dependencies..."
+                sh "npm install"
             }
         }
 
-        
-        stage('Test'){
+        stage('Run Tests'){
             steps{
                 echo "Testing..."
+                sh "npm run test:ci"
             }
         }
-        stage('Deploying'){
+
+        stage ('Build'){
             steps{
-                echo "Deploying..."
+                sh "npm run build"
             }
+        }
+    }
+
+    post {
+        always {
+            junit 'reports/junit.xml'
         }
     }
 }

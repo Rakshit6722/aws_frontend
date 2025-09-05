@@ -14,6 +14,7 @@ pipeline{
         stage('Run Tests'){
             steps{
                 echo "Testing..."
+                
                 sh "npm run test:ci"
             }
         }
@@ -27,7 +28,9 @@ pipeline{
 
     post {
         always {
-            junit 'reports/junit.xml'
+            node('master'){
+                junit 'reports/junit.xml'
+            }
         }
     }
 }

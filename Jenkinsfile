@@ -17,6 +17,7 @@ pipeline {
                 sh "npm run test:ci"
 
                 junit 'reports/junit.xml'
+                
             }
         }
         stage ('Build'){

@@ -1,6 +1,11 @@
 pipeline{
     // Use 'agent any' to run on the Jenkins controller (or a static agent).
-    agent any
+    agent {
+        docker {
+            image 'node:18.17.1'
+            lable 'docker-cloud'
+        }
+    }
 
     stages {
         stage('Install Dependencies'){

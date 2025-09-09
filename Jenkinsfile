@@ -1,8 +1,8 @@
 pipeline {
     agent {
         docker {
-            image 'node:18.17.1'
-            label 'docker-cloud'
+            image 'node:18'
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
 
@@ -15,7 +15,7 @@ pipeline {
         stage('Run Tests'){
             steps{
                 sh "npm run test:ci"
-                
+
                 junit 'reports/junit.xml'
             }
         }

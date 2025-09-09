@@ -11,7 +11,7 @@ pipeline{
             }
         }
 
-        
+
 
         stage('Run Tests'){
             steps{
@@ -30,9 +30,7 @@ pipeline{
 
     post {
         always {
-            node(){
                 junit 'reports/junit.xml'
-            }
         }
     }
 }

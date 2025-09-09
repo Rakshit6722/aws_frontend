@@ -10,11 +10,12 @@ pipeline{
                 sh "npm install"
             }
         }
+        
 
         stage('Run Tests'){
             steps{
                 echo "Testing..."
-                
+
                 sh "npm run test:ci"
             }
         }
@@ -28,7 +29,7 @@ pipeline{
 
     post {
         always {
-            node('master'){
+            node(){
                 junit 'reports/junit.xml'
             }
         }

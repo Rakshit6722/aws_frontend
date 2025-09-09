@@ -1,7 +1,6 @@
 pipeline{
-    agent {
-        docker {image 'node:18.17.1'}
-    }
+    // Use 'agent any' to run on the Jenkins controller (or a static agent).
+    agent any
 
     stages {
         stage('Install Dependencies'){
@@ -11,13 +10,12 @@ pipeline{
             }
         }
 
-
-
         stage('Run Tests'){
             steps{
                 echo "Testing..."
-
                 sh "npm run test:ci"
+                // Place the junit step here to ensure it has the correct context.
+                junit 'reports/junit.xml'
             }
         }
 
@@ -25,14 +23,6 @@ pipeline{
             steps{
                 sh "npm run build"
             }
-        }
-    }
-
-    
-
-    post {
-        always {
-                junit 'reports/junit.xml'
         }
     }
 }

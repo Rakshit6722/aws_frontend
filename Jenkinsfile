@@ -9,11 +9,11 @@ pipeline {
     stages {
         stage('Install Dependencies'){
             steps{
-                sh "npm install"
+                sh "npm install --legacy-peer-deps"
             }
         }
         stage('Run Tests'){
-            
+
             steps{
                 sh "npm run test:ci"
 

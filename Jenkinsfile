@@ -3,7 +3,7 @@ pipeline{
     agent {
         docker {
             image 'node:18.17.1'
-            lable 'docker-cloud'
+            label 'docker-cloud'
         }
     }
 
